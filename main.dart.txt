@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+
+class StudentListTable extends StatelessWidget {
+  final List<List<String>> studentData = [
+    ['SN', 'MAT', 'SCHOOL', 'Class', 'Action'],
+    ['1', '0001', 'GBHS Bonaberi, Douala', '6eme', '@'],
+    ['2', '0002', 'BGC Molyko, Buea', 'Form 1A', '@'],
+    ['3', '0003', 'University of Buea', 'Level 300', '@'],
+    ['4', '0004', 'Biaka University, Buea', 'Level 400', '@'],
+    ['5', '0005', 'University of the people', 'U.Grad', '@'],
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'List of Students',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              'These are the students under this guardian/parent',
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+          Table(
+            border: TableBorder.all(width: 1.0, color: Colors.black),
+            children: List.generate(studentData.length, (rowIndex) {
+              return TableRow(
+                children:
+                    List.generate(studentData[rowIndex].length, (colIndex) {
+                  return Container(
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        studentData[rowIndex][colIndex],
+                      ),
+                    ),
+                  );
+                }),
+              );
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: StudentListTable(),
+  ));
+}
+```
